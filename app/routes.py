@@ -38,6 +38,6 @@ def login():
                                   # Then it will look at forms > LoginForms to validate the data class. If all valid then eval to True.
                                     # So if the user hits triggers the POST method and the data is valid, then it will use flash, which is a method to show user its good
         flash(f'Login requested for user {form.username.data}, remember_me={form.remember_me.data}')
-        return redirect('/index') # redirects user to another page
+        return redirect(url_for('index')) # redirects user to another page
     return render_template('login.html', title = 'Sign In', form = form)
 
