@@ -8,6 +8,9 @@ View Functions
 
 Each View Function can be mapped to one or more URLs
 """
+
+from app import db
+from app.forms import RegistrationForm
 from flask import render_template, flash, redirect, url_for, request# render_template method converts a template into an HTML page. This invokes Jinja2 template engine. Its shipped with Flask
 from app import app # this references the app folder and the app instance inside __init__.py
 from app.forms import LoginForm
@@ -24,7 +27,7 @@ from werkzeug.urls import url_parse
 @app.route('/index')   
 @login_required # this decorator will protect the view if the user is not logged in
 def index():
-    # user = {'username': 'Harry'}
+
     posts = [
         {
         'author':{'username':'John'},
@@ -73,3 +76,20 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+
+    # first make sure the user that invokes this function is not ALREADY logged in. If so, redirect
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    
+    form = RegistrationForm() # instantiate form var
+    if form.validate_on_submit(): 
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congrats, you are now registered!')
+        return redirect(url_for('login'))  # once the user succeeds on registering, it will send them back to login page to proceed
+    return render_template('register.html', title='Register', form=form)

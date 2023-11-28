@@ -11,3 +11,4 @@ wtform
 flask_wtf
 flask_migrate
 flask-login
+email_validator
