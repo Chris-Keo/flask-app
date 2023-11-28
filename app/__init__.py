@@ -2,6 +2,7 @@ from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager
 
 # This will create the application object as an instance of class Flask
 #  __name__ is a predefined variable and points to this file as the starting point to load associated resources
@@ -11,6 +12,9 @@ app = Flask(__name__)
 app.config.from_object(Config) # instantiate config variables
 db = SQLAlchemy(app) #instantiate a database instance
 migrate = Migrate(app, db) # instantiante the migration engine instance and it takes the applications db instance as the second arg
+
+login = LoginManager(app) # this will work mainly with the User Model in app/models.py
+login.login_view = 'login' # login is the view function that handles logins
 
 # This import is done here to workaround the issue of circular imports, a common problem with Flask apps
 # routes should be another file that exists in the project called routes.py

@@ -10,4 +10,4 @@ flask_sqlalchemy
 wtform
 flask_wtf
 flask_migrate
-pysqlite
+flask-login

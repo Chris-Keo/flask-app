@@ -7,8 +7,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 
+# this logs info into Flask user session
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()]) # since there is a validators attached, this means flask will generate errors to render in html 
     password =  PasswordField('Password', validators=[DataRequired()]) 
     remember_me = BooleanField('Remember Me')
-    submit =SubmitField('Sign In')
+    submit = SubmitField('Sign In')
