@@ -93,3 +93,13 @@ def register():
         flash('Congrats, you are now registered!')
         return redirect(url_for('login'))  # once the user succeeds on registering, it will send them back to login page to proceed
     return render_template('register.html', title='Register', form=form)
+
+@app.route('/user/<username>') # <dynamic_component> , if that is in the route, it is a dynamic component
+@login_required #this page is only accessible to logged in users
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404() # if there are no results, send back a 404 to the user
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
