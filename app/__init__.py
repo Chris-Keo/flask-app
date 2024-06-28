@@ -8,7 +8,7 @@ from flask_login import LoginManager
 #  __name__ is a predefined variable and points to this file as the starting point to load associated resources
 #  __name__ will almost always configure Flask correctly
 # the app variable below is instantiated in this file so now it is a member if the app package. It is a package because this folder has the __init__.py file
-app = Flask(__name__)
+app = Flask(__name__) # <-- this is a flask app instance
 app.config.from_object(Config) # instantiate config variables
 db = SQLAlchemy(app) #instantiate a database instance
 migrate = Migrate(app, db) # instantiante the migration engine instance and it takes the applications db instance as the second arg
