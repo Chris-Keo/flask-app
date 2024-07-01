@@ -15,7 +15,7 @@ from flask import render_template, flash, redirect, url_for, request# render_tem
 from app import app # this references the app folder and the app instance inside __init__.py
 from app.forms import LoginForm
 
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_user, logout_user, login_required # pip install flask_login
 from app.models import User
 
 from werkzeug.urls import url_parse
@@ -47,15 +47,16 @@ def login():
 
     form = LoginForm() # Instantiate an object from forms
     """
-    This will evaluate to True if the user clicks the submit button to POST data
+    Thr if statement below  will evaluate to True if the user clicks the submit button to POST data
     Then it will look at forms > LoginForms to validate the data class. If all valid then eval to True
-    So if the user hits triggers the POST method and the data is valid, then it will use flash, which is a method to show user its good
+    So if the user triggers the POST method and the data is valid, then it will use flash, which is a method to show user its good
     """
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data): # evaluate to True if user is invalid/none or if the password is incorrect for user
             flash('Invalid username or password')
             return redirect(url_for('login'))
+        # if user enters correct pw
         login_user(user, remember=form.remember_me.data) # if it makes to this step. the user is being logged in with login_user()      
 
         # this variable is for requiring users to login. if they try to access a page and user not logged in. it will send them to login page
