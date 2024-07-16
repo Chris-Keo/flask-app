@@ -1,0 +1,98 @@
+2024-07-14 04:14:47,764 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 04:18:04,497 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 04:18:12,399 ERROR: Exception on /edit_profile [POST] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
+Traceback (most recent call last):
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: User.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 117, in edit_profile
+    db.session.commit()
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/scoping.py", line 597, in commit
+    return self._proxied.commit()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4341, in flush
+    self._flush(objects)
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4476, in _flush
+    with util.safe_reraise():
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4437, in _flush
+    flush_context.execute()
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 85, in save_obj
+    _emit_update_statements(
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 912, in _emit_update_statements
+    c = connection.execute(
+        ^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+           ^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: User.username
+[SQL: UPDATE "User" SET username=?, about_me=? WHERE "User".id = ?]
+[parameters: ('chriskeo2', 'what do you want to learn', 2)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-07-14 04:29:38,971 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 04:30:00,968 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 04:31:05,655 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 06:42:27,326 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 06:43:22,893 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 06:44:24,815 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 06:44:59,246 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 06:56:58,738 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 07:06:21,868 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-14 07:07:30,871 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]

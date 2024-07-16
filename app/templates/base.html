@@ -9,11 +9,13 @@
     </head>
     <body>
         <div>Microblog: 
-            <a href="{{ url_for('index') }}">Home</a>
-            {% if  current_user.is_anonymous %}  <!-- evaluates to True when user is not logged in -->
+            <a href="{{ url_for('index') }}">Home</a> <!-- these are hyperlinks -->
+            {% if  current_user.is_anonymous %}  <!-- evaluates to True when user is not logged in. This is_anonymous comes from the UserMixin from flask login lib-->
             <a href="{{ url_for('login') }}">Login!</a>
             {% else %}
-            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a> <!-- Since the user route takes a dynamicargument, the url_for() takes a value for that keyword, which is the dynamic component in the route -->
+            <a href="{{ url_for('user', username=current_user.username) }}">Profile</a> <!-- Since the user route takes a dynamic argument, 
+                                                                                                the url_for() takes a value for that keyword, which is the dynamic component in the route. 
+                                                                                            For example, it will build a url like user/chriskeo -->
             <a href="{{ url_for('logout') }}">Logout</a>
             {% endif %}
         </div>

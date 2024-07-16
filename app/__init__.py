@@ -4,6 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+import logging
+from logging.handlers import SMTPHandler, RotatingFileHandler
+import os
+
 # This will create the application object as an instance of class Flask
 #  __name__ is a predefined variable and points to this file as the starting point to load associated resources
 #  __name__ will almost always configure Flask correctly
@@ -13,13 +17,47 @@ app.config.from_object(Config) # instantiate config variables, comes from config
 db = SQLAlchemy(app) #instantiate a database instance
 migrate = Migrate(app, db) # instantiante the migration engine instance and it takes the applications db instance as the second arg
 
-login = LoginManager(app) # this will work mainly with the User Model in app/models.py
-login.login_view = 'login' # login is the view function that handles logins
+login = LoginManager(app) # this will work mainly with the User Model in app/models.py and it expects certain properties and methods to be implemented in it
+login.login_view = 'login' # we need to tell Flask-Logins' ....login_view which view function handles the logins. 'login' is the view function in routes.py that handles logins
+
+if not app.debug:
+    # email errors
+    if app.config['MAIL_SERVER']:
+        auth= None
+        if app.config['MAIL_SERVER'] or  app.config['MAIL_PASSWORD']:
+            auth = (app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+        secure = None
+
+        if app.config['MAIL_USE_TLS']:
+            secure = ()
+        mail_handler = SMTPHandler(
+            mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
+            fromaddr = 'no-reply@' + app.config['MAIL_SERVER'],
+            toaddrs=app.config['ADMINS'], subject='microblog failure',
+            credentials=auth, secure=secure
+        )
+        mail_handler.setLevel(logging.ERROR)
+        app.logger.addHandler(mail_handler)
+
+    # logging
+    if not os.path.exists('logs'):
+        os.mkdir('logs') # if a log file does not exist create one
+    file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240,
+                                       backupCount=10) # use rotatingfilehandler to make sure we dont save too many logs that will take up space
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+    file_handler.setLevel(logging.INFO)
+    app.logger.addHandler(file_handler)
+
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('Microblog startup')
 
 # This import is done here to workaround the issue of circular imports, a common problem with Flask apps
 # routes should be another file that exists in the project called routes.py
 # models is to define the structure of the database instance, models is a collection of classes called database models
-from app import routes, models
+from app import routes, models, errors
+
+
 
 if __name__ == '__main__':
     """

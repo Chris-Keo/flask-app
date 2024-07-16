@@ -10,10 +10,11 @@ Each View Function can be mapped to one or more URLs
 """
 
 from app import db
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, EditProfileForm # from forms.py
 from flask import render_template, flash, redirect, url_for, request# render_template method converts a template into an HTML page. This invokes Jinja2 template engine. Its shipped with Flask
 from app import app # this references the app folder and the app instance inside __init__.py
 from app.forms import LoginForm
+from datetime import datetime, timezone
 
 from flask_login import current_user, login_user, logout_user, login_required # pip install flask_login
 from app.models import User
@@ -40,14 +41,14 @@ def index():
         ]
     return render_template('index.html', title = 'Home', posts = posts)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST']) # methods are the type of requests. We explicity tell our app what type of requests are accepted. Defualt is GET only
 def login():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated: # current_user belongs to Flask Login and is_authenticated is used to check if user is logged in or not
         return redirect(url_for('index'))
 
-    form = LoginForm() # Instantiate an object from forms
+    form = LoginForm() # Instantiate an object from forms.py
     """
-    Thr if statement below  will evaluate to True if the user clicks the submit button to POST data
+    The if statement below  will evaluate to True if the user clicks the submit button to POST data. So this will evaluate to true if user "posts" data via submit button
     Then it will look at forms > LoginForms to validate the data class. If all valid then eval to True
     So if the user triggers the POST method and the data is valid, then it will use flash, which is a method to show user its good
     """
@@ -55,9 +56,10 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data): # evaluate to True if user is invalid/none or if the password is incorrect for user
             flash('Invalid username or password')
-            return redirect(url_for('login'))
+            return redirect(url_for('login')) # if wrong password entered by user then app will redirect back to the login page so it redisplays where the errors are for better UX
+        
         # if user enters correct pw
-        login_user(user, remember=form.remember_me.data) # if it makes to this step. the user is being logged in with login_user()      
+        login_user(user, remember=form.remember_me.data) # if it makes to this step. the user is being logged in with login_user() and this function will regisyerthe user for navigation experience.
 
         # this variable is for requiring users to login. if they try to access a page and user not logged in. it will send them to login page
             # once they log in they will be redirected back to the page they tried to access before
@@ -73,9 +75,9 @@ def login():
         return redirect(next_page) # redirects user to another page
     return render_template('login.html', title = 'Sign In', form = form)
 
-@app.route('/logout') # this will be in in app/templates/base.html , which is the navigation bar
+@app.route('/logout') # this will be in in app/templates/base.html , which is the navigation bar. When the user logs in...the login button will turn into a logout button
 def logout():
-    logout_user()
+    logout_user() # this function lives in Flask Login library
     return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET','POST'])
@@ -104,3 +106,27 @@ def user(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('user.html', user=user, posts=posts)
+
+@app.route('/edit_profile', methods=['GET','POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm(original_username=current_user.username) # original_username is created to remember the username to check if it is duplicate
+    if form.validate_on_submit(): # this is where the user will enter new data and submit it to the db
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data
+        db.session.commit()
+
+        flash('Your changed have been saved.')
+        form = EditProfileForm(formdata=None) # clear the data in the form
+        # return redirect(url_for('edit_profile'))
+        return render_template('edit_profile.html', title='Edit Profile', form=form) # clears the form
+    elif request.method == 'GET': # when the user clicks on edit profile link it will prepopulate the form fields
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', title='Edit Profile', form=form)
+
+@app.before_request # this decorator will register this before_request() function to run before the view function referenced, which is the login view. i think...or this code runs before ANY view function invoked
+def before_request():
+    if current_user.is_authenticated: # current_user is a flask method that is invoked in the login view
+        current_user.last_seen = datetime.now(timezone.utc)
+        db.session.commit() # there is no db.session.add() because the Flask-Login current_user method already invokes the user loader callback function that runs db already. you can do it again if youd like but it will violate DRY
