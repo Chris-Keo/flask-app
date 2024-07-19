@@ -67,12 +67,27 @@ class User(UserMixin, db.Model):
         return db.session.scalar(query) is not None
     
     def followers_count(self):
-        query = sa.select(sa.func.count()).select_from(self.followers.select().subquery())
+        query = sa.select(sa.func.count()).select_from(self.followers.select().subquery()) # need to add subquery() because it is the inner query of the larger query
         return db.session.scalar(query)
 
-    def following_coung(self):
-        query = sa.select(sa.func.count()).select_from(self.following.select().subquery())
+    def following_count(self):
+        query = sa.select(sa.func.count()).select_from(self.following.select().subquery()) # need to add subquery() because it is the inner query of the larger query
         return db.session.scalar(query)
+    
+    def following_posts(self):
+        # will show the user and the user followers posts
+        Author = so.aliased(User)
+        Follower = so.aliased(User)
+
+        return (sa.select(Post)
+                .join(Post.author.of_type(Author))
+                .join(Author.followers.of_type(Follower), isouter=True) # isouter=True makes this a left outer join, which preserves items on left side that have no match to right
+                .where(sa.or_(     # using a compound filter
+                    Follower.id == self.id, # gets posts that have a user as the follower
+                    Author.id == self.id))  # gets posts that have a user as the author
+                .group_by(Post)
+                .order_by(Post.timestamp.desc())
+                )
 
     def __repr__(self):
         return f'<User {self.username}>'

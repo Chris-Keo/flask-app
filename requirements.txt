@@ -12,3 +12,4 @@ flask_wtf
 flask_migrate
 email_validator
 Flask-Login==0.6.3
+pytest

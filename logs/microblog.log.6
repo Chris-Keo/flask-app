@@ -1,5 +1,4 @@
-2024-07-18 20:38:01,333 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-18 20:38:02,704 ERROR: Exception on / [GET] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
+2024-07-18 17:57:35,696 ERROR: Exception on / [GET] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -16,7 +15,7 @@ Traceback (most recent call last):
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 57, in index
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 56, in index
     return render_template('index.html', title = 'Home Page', form=form, posts = posts)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 151, in render_template
@@ -34,11 +33,18 @@ Traceback (most recent call last):
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/base.html", line 33, in top-level template code
     {% block content %}  {% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 18, in block 'content'
-    {% for post in posts %}
-TypeError: 'method' object is not iterable
-2024-07-18 23:33:42,388 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-18 23:33:46,845 ERROR: Exception on / [GET] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 19, in block 'content'
+    {% include '_post.html' %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/_post.html", line 3, in top-level template code
+    <td><img src="{{ post.author.avatar(36) }}"></td>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'avatar'
+2024-07-18 18:01:33,806 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2024-07-18 18:01:36,126 ERROR: Exception on / [GET] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
 Traceback (most recent call last):
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
     response = self.full_dispatch_request()
@@ -55,7 +61,7 @@ Traceback (most recent call last):
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
     return current_app.ensure_sync(func)(*args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 57, in index
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 56, in index
     return render_template('index.html', title = 'Home Page', form=form, posts = posts)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 151, in render_template
@@ -73,13 +79,14 @@ Traceback (most recent call last):
   File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/base.html", line 33, in top-level template code
     {% block content %}  {% endblock %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 18, in block 'content'
-    {% for post in posts %}
-TypeError: 'method' object is not iterable
-2024-07-19 00:38:03,915 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-19 01:18:06,105 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-19 01:18:35,334 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-19 02:40:08,181 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-19 03:44:12,572 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-19 03:48:27,352 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-19 03:49:23,081 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 19, in block 'content'
+    {% include '_post.html' %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/_post.html", line 3, in top-level template code
+    <td><img src="{{ post.author.avatar(36) }}"></td>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+jinja2.exceptions.UndefinedError: 'dict object' has no attribute 'avatar'
+2024-07-18 18:06:21,382 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
