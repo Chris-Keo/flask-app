@@ -20,5 +20,5 @@ class Config():
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['chriskeo44@gmail.com']
 
-    # PAGINATION
+    # PAGINATION KNOB
     POSTS_PER_PAGE = 3
