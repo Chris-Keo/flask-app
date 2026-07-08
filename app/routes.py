@@ -13,13 +13,14 @@ from app import db
 from app.forms import RegistrationForm, EditProfileForm # from forms.py
 from flask import render_template, flash, redirect, url_for, request# render_template method converts a template into an HTML page. This invokes Jinja2 template engine. Its shipped with Flask
 from app import app # this references the app folder and the app instance inside __init__.py
-from app.forms import LoginForm, EmptyForm, PostForm, RegistrationForm, EditProfileForm
+from app.forms import LoginForm, EmptyForm, PostForm, RegistrationForm, EditProfileForm, ResetPasswordRequestForm
 from datetime import datetime, timezone
 
 import sqlalchemy as sa
 
 from flask_login import current_user, login_user, logout_user, login_required # pip install flask_login
 from app.models import User, Post
+from app.email import send_password_reset_email
 
 from werkzeug.urls import url_parse
 
@@ -122,13 +123,20 @@ def register():
 @app.route('/user/<username>') # <dynamic_component> , if that is in the route, it is a dynamic component
 @login_required #this page is only accessible to logged in users
 def user(username):
-    user = User.query.filter_by(username=username).first_or_404() # if there are no results, send back a 404 to the user
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'}
-    ]
+    user = db.first_or_404(sa.select(User).where(User.username == username))
+    page = request.args.get('page', 1 , type=int)
+    query = user.posts.select().order_by(Post.timestamp.desc())
+    posts = db.paginate(query, page=page, per_page=app.config['POSTS_PER_PAGE'], error_out=False)
+
+    next_url = url_for('user', username=user.username, page=posts.next_num) if posts.has_next else None
+    prev_url = url_for('user', username=user.username, page=posts.prev_num) if posts.has_prev else None
+    form = EmptyForm()
+    # posts = [
+    #     {'author': user, 'body': 'Test post #1'},
+    #     {'author': user, 'body': 'Test post #2'}
+    # ]
     form = EmptyForm() # need to instantiate the submit button
-    return render_template('user.html', user=user, posts=posts, form=form)
+    return render_template('user.html', user=user, posts=posts.items, form=form, next_url=next_url, prev_url=prev_url)
 
 @app.route('/edit_profile', methods=['GET','POST'])
 @login_required
@@ -210,3 +218,37 @@ def explore():
 
     
     return render_template('index.html', title= 'Explore', posts=posts.items, next_url=next_url, prev_url=prev_url) # if you look, form parameter is not in render_template() because we dont want to show form in this view
+
+@app.route('/reset_password_request', methods=['GET','POST'])
+def reset_password_request():
+    # check is user is not logged in. If so, skip this function altogether and redirect to the index page
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        # when the form is submitted with email. we use that email to see if a user exists with this email provided
+        # then if it is valid then pass that object to a helper function called send_password_reset_email()
+        user = db.session.scalar(
+            sa.select(User).where(User.email == form.email.data)
+        )
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for reset instructions') # notice this is flash is outside the if and will flash regardless if the email is unknown. this is so client cant use this form to figure if a member or not
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html', title= 'Reset Password', form=form)
+
+@app.route('/reset_password/<token>', methods=['GET','POST'])
+def reset_password(token):
+    # check is user is not logged in. If so, skip this function altogether and redirect to the index page
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_password_token(token) # this method will only return user object if token is validated
+    if not user:
+        return redirect(url_for('index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been reset')
+        return redirect(url_for('login'))
+    return render_template('reset_password.html', form=form)

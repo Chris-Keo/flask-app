@@ -1,21 +1,52 @@
-from flask import Flask
+from flask import Flask, request
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_mail import Mail
+from flask_moment import Moment
+from flask_babel import Babel
 
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 
+# Add debug prints for environment variables
+print("\n=== Environment Variables ===")
+print(f"DATABASE_URL: {os.environ.get('DATABASE_URL')}")
+print(f"Current working directory: {os.getcwd()}")
+print(f"Environment variables available: {list(os.environ.keys())}")
+print("===========================\n")
+
+def get_locale():
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 # This will create the application object as an instance of class Flask
 #  __name__ is a predefined variable and points to this file as the starting point to load associated resources
 #  __name__ will almost always configure Flask correctly
 # the app variable below is instantiated in this file so now it is a member if the app package. It is a package because this folder has the __init__.py file
+
 app = Flask(__name__) # <-- this is a flask app instance
 app.config.from_object(Config) # instantiate config variables, comes from config.py modulelocated in the top level directory, hence ".config" and use method from_object to call the class Config inside config.py
+
+# Add request logging
+@app.before_request
+def log_request_info():
+    app.logger.info('Request Headers: %s', request.headers)
+    app.logger.info('Request Body: %s', request.get_data())
+    app.logger.info('Request URL: %s %s', request.method, request.url)
+
+@app.after_request
+def log_response_info(response):
+    app.logger.info('Response Status: %s', response.status)
+    app.logger.info('Response Headers: %s', response.headers)
+    return response
+
 db = SQLAlchemy(app) #instantiate a database instance
 migrate = Migrate(app, db) # instantiante the migration engine instance and it takes the applications db instance as the second arg
+mail = Mail(app)
+moment = Moment(app)
+babel = Babel(app, locale_selector=get_locale)
+
 
 login = LoginManager(app) # this will work mainly with the User Model in app/models.py and it expects certain properties and methods to be implemented in it
 login.login_view = 'login' # we need to tell Flask-Logins' ....login_view which view function handles the logins. 'login' is the view function in routes.py that handles logins
@@ -56,6 +87,7 @@ if not app.debug:
 # routes should be another file that exists in the project called routes.py
 # models is to define the structure of the database instance, models is a collection of classes called database models
 from app import routes, models, errors
+from app import dash_app  # Import the Dash application
 
 
 

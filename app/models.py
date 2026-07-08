@@ -5,14 +5,21 @@ from datetime import datetime, timezone
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from dataclasses import dataclass
+from dash import no_update
 
 from flask_login import UserMixin # UserMixin gives us access to four methods or generic implementations: is_authenticated, is_active, is_ananymous, get_id
 from app import login # importing from app --> __init__.py --> login object
 import sqlalchemy as sa
 import sqlalchemy.orm as so
-from typing import Optional
+from typing import Optional, Generator
 from hashlib import md5
+from time import time
+import jwt
 
+from app import app
+
+def no_updates(num: int = 0) -> object:
+    return (no_update for i in range(num))
 
 # this is used to load the user in the app so the user can navigate through the app and be remembered. flask-login retrieves id of the user and loads it
 @login.user_loader # a flask_login decorator used to register the user loader
@@ -88,6 +95,22 @@ class User(UserMixin, db.Model):
                 .group_by(Post)
                 .order_by(Post.timestamp.desc())
                 )
+    
+    def get_reset_password_token(self, expires_in=600):
+        # return JWT token as a string
+        return jwt.encode({'reset_password': self.id, 'exp': time() + expires_in}, app.config['SECRET_KEY'], algorithm='HS256')
+    
+    @staticmethod
+    def verify_reset_password_token(token):
+        # note: Static methods do not receive the class as a first arg.
+        # this function takes a token and attempts to decode it.
+            # if token cant be validated or expired an exception is raised
+        try:
+            id = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])['reset_password']
+        except:
+            return None
+        return db.session.get(User, id)
+    
 
     def __repr__(self):
         return f'<User {self.username}>'

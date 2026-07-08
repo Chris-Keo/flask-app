@@ -1,7 +1,7 @@
 import logging
 from logging.config import fileConfig
 
-from flask import current_app
+from flask import current_app # Within the application context, you can access the Flask application instance using the current_app variable.
 
 from alembic import context
 

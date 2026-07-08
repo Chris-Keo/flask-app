@@ -13,3 +13,12 @@ flask_migrate
 email_validator
 Flask-Login==0.6.3
 pytest
+flask_mail
+pyjwt
+flask-moment
+flask-babel
+dash
+dash-ag-grid
+dash-daq
+dash-bootstrap-components
+pandas

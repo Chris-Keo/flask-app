@@ -29,7 +29,14 @@
 
         <!-- This will send the user to the registration form register.html -->
         <p> New User? <a href="{{ url_for('register') }}" > Click to Register!</a> </p>   
+        <p>
+            Forgot your password?
+            <a href="{{ url_for('reset_password_request')}}">Click to reset it</a>
+        </p>
 
     </form>
 
 {% endblock %}
+
+
+
