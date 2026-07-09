@@ -22,7 +22,7 @@ from flask_login import current_user, login_user, logout_user, login_required # 
 from app.models import User, Post
 from app.email import send_password_reset_email
 
-from werkzeug.urls import url_parse
+from urllib.parse import urlparse
 
 # Above each function are URL routes
     # these are decorators, a decorator modifies the functions that follows it
@@ -88,7 +88,7 @@ def login():
             # once they log in they will be redirected back to the page they tried to access before
         next_page = request.args.get('next') # this value will be set to a relative path. The @login_required. See page 51.
 
-        if not next_page or url_parse(next_page).netloc != '': 
+        if not next_page or urlparse(next_page).netloc != '': 
             # not next_page means if the login URL does not have a next argument then redirect to index page
             # url_parse(next_page).netloc != '' is to make site secure. if url is a full path then redirect to index page. the next_page value should always be a relative path not absolute path
                 # url_parse() is a werkzeug method to help check if a URL is relative or absolute. See page 51
