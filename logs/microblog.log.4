@@ -1,117 +1,151 @@
-2024-07-18 20:17:46,215 ERROR: Exception on / [GET] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 56, in index
-    return render_template('index.html', title = 'Home Page', form=form, posts = posts)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 151, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 132, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/base.html", line 33, in top-level template code
-    {% block content %}  {% endblock %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 18, in block 'content'
-    {% for post in posts %}
-TypeError: 'method' object is not iterable
-2024-07-18 20:22:19,705 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-18 20:22:21,195 ERROR: Exception on / [GET] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 56, in index
-    return render_template('index.html', title = 'Home Page', form=form, posts = posts)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 151, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 132, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/base.html", line 33, in top-level template code
-    {% block content %}  {% endblock %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 18, in block 'content'
-    {% for post in posts %}
-TypeError: 'method' object is not iterable
-2024-07-18 20:22:37,835 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
-2024-07-18 20:22:39,162 ERROR: Exception on / [GET] [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py:1414]
-Traceback (most recent call last):
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/app.py", line 1469, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/routes.py", line 56, in index
-    return render_template('index.html', title = 'Home Page', form=form, posts = posts)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 151, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/flask/templating.py", line 132, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/venv/lib/python3.11/site-packages/jinja2/environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/base.html", line 33, in top-level template code
-    {% block content %}  {% endblock %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/templates/index.html", line 18, in block 'content'
-    {% for post in posts %}
-TypeError: 'method' object is not iterable
-2024-07-18 20:23:34,859 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:53]
+2026-07-24 11:51:14,263 INFO: Response Status: 200 OK [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 11:51:14,267 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 5110
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 11:51:14,837 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: empty
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=eyJfZnJlc2giOmZhbHNlLCJjc3JmX3Rva2VuIjoiNWFjMDc3MDVjNjUzYzlhMTdiNzEwZTlmNTMxNjUxYjdmYjNjYmNlNiJ9.amOJ8g.dIyHwMs2qgkD1DHyqdBE278_kns
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 11:51:14,837 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 11:51:14,838 INFO: Request URL: GET http://127.0.0.1:5000/favicon.ico [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 11:51:14,841 INFO: Response Status: 404 NOT FOUND [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 11:51:14,841 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 3446
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 11:51:16,975 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://127.0.0.1:5000/login?next=%2F
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=eyJfZnJlc2giOmZhbHNlLCJjc3JmX3Rva2VuIjoiNWFjMDc3MDVjNjUzYzlhMTdiNzEwZTlmNTMxNjUxYjdmYjNjYmNlNiJ9.amOJ8g.dIyHwMs2qgkD1DHyqdBE278_kns
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 11:51:16,975 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 11:51:16,975 INFO: Request URL: GET http://127.0.0.1:5000/index [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 11:51:16,976 INFO: Response Status: 302 FOUND [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 11:51:16,976 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 227
+Location: /login?next=%2Findex
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 11:51:16,979 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://127.0.0.1:5000/login?next=%2F
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=.eJwNjEEKgzAQAL-y7FlKgiTBvKL3IrJZNkaaanFzE_9uTnOYYS5cciUtohg_F0LrwJ-o0io44LsKqUA9Vth2aAcQc5fQyqbw780L53se-uQULRgzVZUBWc-8tOMrO0Z0xCYE49i7kSeyIQVrZMputN7ZFHIaObF4vB_xdi0O.amOJ9A.FkxQmPc1qWE0YOj2VBgWmYAV34U
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 11:51:16,980 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 11:51:16,980 INFO: Request URL: GET http://127.0.0.1:5000/login?next=/index [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 11:51:16,982 INFO: Response Status: 200 OK [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 11:51:16,982 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 5110
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 11:51:19,219 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://127.0.0.1:5000/login?next=%2Findex
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=eyJfZnJlc2giOmZhbHNlLCJjc3JmX3Rva2VuIjoiNWFjMDc3MDVjNjUzYzlhMTdiNzEwZTlmNTMxNjUxYjdmYjNjYmNlNiJ9.amOJ9A.Res7yNmQ5juy6_86HmyLYea6kf8
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 11:51:19,220 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 11:51:19,220 INFO: Request URL: GET http://127.0.0.1:5000/index [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 11:51:19,221 INFO: Response Status: 302 FOUND [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 11:51:19,221 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 227
+Location: /login?next=%2Findex
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 11:51:19,224 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://127.0.0.1:5000/login?next=%2Findex
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=.eJwNjEEKgzAQAL-y7FlKgiTBvKL3IrJZNkaaanFzE_9uTnOYYS5cciUtohg_F0LrwJ-o0io44LsKqUA9Vth2aAcQc5fQyqbw780L53se-uQULRgzVZUBWc-8tOMrO0Z0xCYE49i7kSeyIQVrZMputN7ZFHIaObF4vB_xdi0O.amOJ9w.iz6UTZCMgDMXXxLMlxfGy-J55TI
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 11:51:19,225 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 11:51:19,225 INFO: Request URL: GET http://127.0.0.1:5000/login?next=/index [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 11:51:19,226 INFO: Response Status: 200 OK [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 11:51:19,226 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 5110
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 11:51:19,793 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://127.0.0.1:5000/login?next=%2Findex
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=eyJfZnJlc2giOmZhbHNlLCJjc3JmX3Rva2VuIjoiNWFjMDc3MDVjNjUzYzlhMTdiNzEwZTlmNTMxNjUxYjdmYjNjYmNlNiJ9.amOJ9w.wyqSaRqC29zuR-24bG7ov-IjZzc
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 11:51:19,793 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 11:51:19,793 INFO: Request URL: GET http://127.0.0.1:5000/index [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 11:51:19,794 INFO: Response Status: 302 FOUND [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 11:51:19,794 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 227
+Location: /login?next=%2Findex
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 11:51:19,796 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://127.0.0.1:5000/login?next=%2Findex
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=.eJwNjEEKgzAQAL-y7FlKgiTBvKL3IrJZNkaaanFzE_9uTnOYYS5cciUtohg_F0LrwJ-o0io44LsKqUA9Vth2aAcQc5fQyqbw780L53se-uQULRgzVZUBWc-8tOMrO0Z0xCYE49i7kSeyIQVrZMputN7ZFHIaObF4vB_xdi0O.amOJ9w.iz6UTZCMgDMXXxLMlxfGy-J55TI
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
