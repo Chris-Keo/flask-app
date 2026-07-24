@@ -8,3 +8,46 @@ Content-Length: 5325
 2026-07-24 13:54:16,085 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:84]
 2026-07-24 13:54:41,346 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:84]
 2026-07-24 13:57:36,360 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:84]
+2026-07-24 14:00:34,467 INFO: Microblog startup [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:84]
+2026-07-24 14:00:38,755 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 14:00:38,757 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 14:00:38,757 INFO: Request URL: GET http://127.0.0.1:5000/ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 14:00:38,758 INFO: Response Status: 302 FOUND [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 14:00:38,758 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 217
+Location: /login?next=%2F
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]
+2026-07-24 14:00:38,786 INFO: Request Headers: Host: 127.0.0.1:5000
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.129.1 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US
+Cookie: session=eyJfZmxhc2hlcyI6W3siIHQiOlsibWVzc2FnZSIsIlBsZWFzZSBsb2cgaW4gdG8gYWNjZXNzIHRoaXMgcGFnZS4iXX1dfQ.amOoRg.zOmHqs3zWAwNfBZY6M4imQztkDk
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:34]
+2026-07-24 14:00:38,787 INFO: Request Body: b'' [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:35]
+2026-07-24 14:00:38,788 INFO: Request URL: GET http://127.0.0.1:5000/login?next=/ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:36]
+2026-07-24 14:00:38,806 INFO: Response Status: 200 OK [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:40]
+2026-07-24 14:00:38,807 INFO: Response Headers: Content-Type: text/html; charset=utf-8
+Content-Length: 5110
+
+ [in /Users/christsnakeo/Desktop/Python Repos/flask-app-1/app/__init__.py:41]

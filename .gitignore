@@ -1,2 +1,12 @@
 venv/
 .qodo
+
+# Python compiled files / cache
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Log files
+*.log
+logs/
