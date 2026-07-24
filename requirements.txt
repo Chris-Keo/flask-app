@@ -17,8 +17,4 @@ flask_mail
 pyjwt
 flask-moment
 flask-babel
-dash
-dash-ag-grid
-dash-daq
-dash-bootstrap-components
 pandas
