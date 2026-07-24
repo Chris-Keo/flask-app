@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from dataclasses import dataclass
-from dash import no_update
 
 from flask_login import UserMixin # UserMixin gives us access to four methods or generic implementations: is_authenticated, is_active, is_ananymous, get_id
 from app import login # importing from app --> __init__.py --> login object
