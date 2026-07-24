@@ -87,7 +87,6 @@ if not app.debug:
 # routes should be another file that exists in the project called routes.py
 # models is to define the structure of the database instance, models is a collection of classes called database models
 from app import routes, models, errors
-from app import dash_app  # Import the Dash application
 
 
 
