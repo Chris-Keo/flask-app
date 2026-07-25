@@ -10,7 +10,7 @@ Each View Function can be mapped to one or more URLs
 """
 
 from app import db
-from app.forms import RegistrationForm, EditProfileForm # from forms.py
+from app.forms import RegistrationForm, EditProfileForm, ResetPasswordForm # from forms.py
 from flask import render_template, flash, redirect, url_for, request# render_template method converts a template into an HTML page. This invokes Jinja2 template engine. Its shipped with Flask
 from app import app # this references the app folder and the app instance inside __init__.py
 from app.forms import LoginForm, EmptyForm, PostForm, RegistrationForm, EditProfileForm, ResetPasswordRequestForm

@@ -18,3 +18,9 @@ pyjwt
 flask-moment
 flask-babel
 pandas
+flask_sqlalchemy
+flask_migrate
+flask_login
+flask_mail
+flask_moment
+flask_babel
