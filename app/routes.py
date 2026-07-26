@@ -27,8 +27,8 @@ from urllib.parse import urlparse
 # Above each function are URL routes
     # these are decorators, a decorator modifies the functions that follows it
     # a common pattern w/ decorators is to use them to register funcs as callbacks for certain events
-@app.route('/', methods=['GET', 'POST'])        
-@app.route('/index', methods=['GET', 'POST'])   
+@app.route('/', methods=['GET', 'POST']) # this is a URL       
+@app.route('/index', methods=['GET', 'POST']) # this is another URL, so when this URL or the one above is accessed, it will invoke the function below. The function below is called a view function. It is a handler for the URL above it. It will return a response to the client. The response can be a string, an HTML page, a JSON object, etc.
 @login_required # this decorator will protect the view if the user is not logged in
 def index():
     form = PostForm()

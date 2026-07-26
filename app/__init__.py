@@ -20,13 +20,13 @@ print("===========================\n")
 
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 # This will create the application object as an instance of class Flask
-#  __name__ is a predefined variable and points to this file as the starting point to load associated resources
+#  __name__ is a predefined variable and points to this file as the starting point to load associated resources, like template files, static files, etc. It is used by Flask to determine the root path of the application so that it can find resource files relative to the location of this file.
 #  __name__ will almost always configure Flask correctly
 # the app variable below is instantiated in this file so now it is a member if the app package. It is a package because this folder has the __init__.py file
-
 app = Flask(__name__) # <-- this is a flask app instance
-app.config.from_object(Config) # instantiate config variables, comes from config.py modulelocated in the top level directory, hence ".config" and use method from_object to call the class Config inside config.py
+app.config.from_object(Config) # instantiate config variables, comes from config.py module located in the top level directory, hence ".config" and use method from_object to call the class Config inside config.py
 
 # Add request logging
 @app.before_request
@@ -84,7 +84,10 @@ if not app.debug:
     app.logger.info('Microblog startup')
 
 # This import is done here to workaround the issue of circular imports, a common problem with Flask apps
-# routes should be another file that exists in the project called routes.py
+# routes should be another file that exists in the project called routes.py.
+# Routes are handlers for the different URLs that the application will respond to. They are view functions
+# that are decorated with route decorators to specify which URL they handle. you can map one ore more view functions to a single URL, 
+#   and you can also map a single view function to multiple URLs. The view function will be called when the URL is accessed, and it will return a response to the client.
 # models is to define the structure of the database instance, models is a collection of classes called database models
 from app import routes, models, errors
 
